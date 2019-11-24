@@ -4,29 +4,44 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = ({ data }) => (
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+
+const IndexPage = ({ data, intl }) => (
   <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to my new Gatsby Website</p>
+    <SEO title={intl.formatMessage({ id: "title" })} />
+    <h1>
+      <FormattedMessage id="hello" />
+    </h1>
+    <p>
+      <FormattedMessage id="welcome" />
+    </p>
 
     <h2 style={{ margin: 0 }}>Posts</h2>
     {data.allContentfulPost.nodes.map(post => {
-      return <div key={post.id}>{post.title}</div>
+      return (
+        <div key={post.contentful_id}>
+          <Link to={"/" + post.path}>{post.title}</Link>
+        </div>
+      )
     })}
+
+    <br />
+    <Link to="/page-2">
+      <FormattedMessage id="go_page2" />
+    </Link>
   </Layout>
 )
 
 export const query = graphql`
-  query ContentFulPosts {
-    allContentfulPost {
+  query ContentFulPosts($locale: String) {
+    allContentfulPost(filter: { node_locale: { eq: $locale } }) {
       nodes {
-        id
+        contentful_id
         title
-        node_locale
+        path
       }
     }
   }
 `
 
-export default IndexPage
+export default injectIntl(IndexPage)

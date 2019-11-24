@@ -12,7 +12,9 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
+
+const Layout = ({ children, intl }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -36,7 +38,7 @@ const Layout = ({ children }) => {
       >
         <main>{children}</main>
         <footer>
-          © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()}, <FormattedMessage id="footer_build" />{" "}
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
@@ -49,4 +51,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default injectIntl(Layout)

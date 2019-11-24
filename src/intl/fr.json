@@ -1,0 +1,17 @@
+{
+    "title": "Gatsby French",
+    "description": "Project description",
+    "author": "@louisbertin",
+    "hello": "Salut les gens!",
+    "welcome": "Bienvenue sur votre nouveau site Gatsby",
+    "title_page2": "Page deux",
+    "hello_page2": "Salut depuis la seconde page",
+    "go_page2": "Aller à la page 2",
+    "welcome_page2": "Bienvenue sur la page 2",
+    "go_back": "Retour à la page d'accueil",
+    "footer_build": "Construit avec",
+    "notfound": {
+        "header": "NOT FOUND",
+        "description": "You just hit a route that doesn't exist... the sadness."
+    }
+}
