@@ -6,6 +6,11 @@ const languageName = {
   fr: "Français",
 }
 
+const languageClick = (e, language) => {
+  e.preventDefault()
+  changeLocale(language)
+}
+
 const Language = () => (
   <div>
     <IntlContextConsumer>
@@ -13,13 +18,14 @@ const Language = () => (
         languages.map(language => (
           <a
             key={language}
-            onClick={() => changeLocale(language)}
+            onClick={e => languageClick(e, language)}
             style={{
               color: currentLocale === language ? `yellow` : `white`,
               margin: 10,
               textDecoration: `underline`,
               cursor: `pointer`,
             }}
+            href="/"
           >
             {languageName[language]}
           </a>
